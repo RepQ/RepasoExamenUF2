@@ -9,4 +9,6 @@ void DibujaEstado();
 
 int EsEstadoFinal();
 
+void AnyadePuntuacion(int);
+
 #endif

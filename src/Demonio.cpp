@@ -1,6 +1,7 @@
 #include <NoEntiendo.hpp>
 #include "Demonio.hpp"
 #include "Muros.hpp"
+#include "Items.hpp"
 
 Demonio demonio;
 
@@ -80,6 +81,11 @@ void ActualizaDemonio()
         demonio.vivo = 0;
     }
     
+    for (int i = 0; i < MAX_ITEMS; i++)
+    {
+	if (ChocaConItem(i, demonio.posX, demonio.posY))
+		ConsumeItem(i);
+    }
     
 }
 

@@ -1,6 +1,7 @@
 #include "NoEntiendo.hpp"
 #include "Items.hpp"
 #include "Muros.hpp"
+#include "Estados.hpp"
 
 Item	items[MAX_ITEMS];
 
@@ -109,6 +110,38 @@ int	ChocaConItem(int i, float posX, float posY)
 		return (1);
 	else
 		return (0);
+}
+
+int	ObtenNumItems()
+{
+	float	numItems;
+
+	numItems = 0;
+	for (int i = 0; i < MAX_ITEMS; i++)
+		numItems++;
+	return (numItems);
+}
+
+void	ConsumeItem(int i)
+{
+	float maxPosItem;
+
+	maxPosItem = ObtenMaxPosicionItem();
+	switch(items[i].tipo)
+	{
+		case PUNTOS_BAJO:
+			AnyadePuntuacion(100);
+			break ;
+		case PUNTOS_MEDIO:
+			AnyadePuntuacion(300);
+			break ;
+		case PUNTOS_ALTO:
+			AnyadePuntuacion(500);
+			break ;
+		case FRENAR:
+			RestaVelocidadMuros(200);
+	}
+	IniciaItem(i, 1);
 }
 
 void	DibujaItems()

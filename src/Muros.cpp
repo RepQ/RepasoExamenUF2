@@ -1,10 +1,12 @@
 #include <NoEntiendo.hpp>
 #include <math.h>
 #include "Muros.hpp"
+#include <stdio.h>
 
 Muro muros[MAX_MUROS];
 
-float velocidadMuros;
+float 		velocidadMuros;
+static float	controlTiempo;
 
 // Funcion privada que nos da la posicion x del
 // muro mas alejado
@@ -107,6 +109,7 @@ void ActualizaMuros()
     float tiempoPasado;
     
     tiempoPasado = NOE_ObtenTiempoDesdeActualizacion() / 1000.0f;
+    controlTiempo += tiempoPasado;
     
     
     int i;
@@ -126,16 +129,28 @@ void ActualizaMuros()
             
         }
 	//Se añade restriccion para la velocidad maxima de los muros
-	if (velocidadMuros <= VELOCIDAD_MAXIMA_MUROS_X)
-		velocidadMuros += (ACELERACION_MUROS_X * tiempoPasado); // Se añade progesion lineal de la velocidad de los muros
-        
+	//if (controlTiempo >= 1)
+	//{
+	//velocidadMuros += (ACELERACION_MUROS_X); // Se añade progesion lineal de la velocidad de los muros
+	//if (velocidadMuros >= VELOCIDAD_MAXIMA_MUROS_X)
+	//velocidadMuros = VELOCIDAD_MAXIMA_MUROS_X;
+	//controlTiempo = 0;
+	//}
+	printf("Tiempo Pasado : %f\n", controlTiempo);
+	printf("Velocidad Muro: %f\n", velocidadMuros);
         i = i + 1;
     }
+    velocidadMuros += ACELERACION_MUROS_X * tiempoPasado;
+    if (velocidadMuros >= VELOCIDAD_MAXIMA_MUROS_X)
+	    velocidadMuros = VELOCIDAD_MAXIMA_MUROS_X;
 }
 
 void	RestaVelocidadMuros(float v)
 {
-	velocidadMuros -= v;
+	if (velocidadMuros >= VELOCIDAD_MINIMA_MUROS_X)
+		velocidadMuros -= v;
+	else
+		velocidadMuros = VELOCIDAD_MINIMA_MUROS_X;
 }
 
 int ChocaConMuro(float posX, float posY, float anchura, float altura)
