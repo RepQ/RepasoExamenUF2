@@ -2,6 +2,7 @@
 #define __ITEMS_HPP__
 
 #define MAX_ITEMS 10
+#define	SEPARACION_ITEMS_X 1400
 
 enum TipoItem
 {

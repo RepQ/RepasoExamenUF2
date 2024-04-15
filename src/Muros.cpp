@@ -126,11 +126,16 @@ void ActualizaMuros()
             
         }
 	//Se añade restriccion para la velocidad maxima de los muros
-	if (velocidadMuros <= 750)
-		velocidadMuros += (5.0f * tiempoPasado); // Se añade progesion lineal de la velocidad de los muros
+	if (velocidadMuros <= VELOCIDAD_MAXIMA_MUROS_X)
+		velocidadMuros += (ACELERACION_MUROS_X * tiempoPasado); // Se añade progesion lineal de la velocidad de los muros
         
         i = i + 1;
     }
+}
+
+void	RestaVelocidadMuros(float v)
+{
+	velocidadMuros -= v;
 }
 
 int ChocaConMuro(float posX, float posY, float anchura, float altura)

@@ -51,6 +51,7 @@ void ActualizaEstado()
                 IniciaFondo();
                 IniciaMuros();
                 IniciaDemonio();
+		IniciaItems();
                 NOE_ReproduceMusica(1, 100, 100);    
                 puntuacion = 0;                
                 estado = 2;
@@ -91,6 +92,7 @@ void ActualizaEstado()
         ActualizaFondo();
         ActualizaMuros();
         ActualizaDemonio();
+	ActualizaItems();
         
         // Actualizamos puntuacion
 
@@ -148,6 +150,7 @@ void DibujaEstado()
         DibujaFondo();
         DibujaMuros();
         DibujaDemonio();
+	DibujaItems();
         
         // Dibujamos el marcador
         
@@ -158,6 +161,11 @@ void DibujaEstado()
         
         NOE_DibujaTexto(textoPuntuacion, 1031 + 20, 21 + 10, 14, 22, 0);   
     }    
+}
+
+void	AnyadePuntuacion(int p)
+{
+	puntuacion += p;
 }
 
 int EsEstadoFinal()

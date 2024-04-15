@@ -13,6 +13,9 @@
 #define ANCHURA_MUROS 59
 #define MIN_POSICION_MUROS_X -100.0f
 
+#define	VELOCIDAD_MINIMA_MUROS_X 50.0f
+#define	VELOCUDAD_MAXIMA_MUROS_X 750.0f
+#define ACELERACION_MUROS_X 5.0f
 struct Muro
 {
     float posX;

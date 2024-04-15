@@ -107,3 +107,4 @@ void DibujaDemonio()
     NOE_DibujaDisco(demonio.posX, demonio.posY, 3, colorR, colorG, colorB);
 
 }
+
